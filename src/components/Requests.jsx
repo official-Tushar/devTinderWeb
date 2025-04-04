@@ -1,19 +1,36 @@
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import { addRequest } from "../utils/requestSlice";
+import { addRequest, removeRequest } from "../utils/requestSlice";
 import { useEffect } from "react";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
   const dispatch = useDispatch();
 
-  const fetchRequests = async () => {
-    const res = await axios.get(BASE_URL + "/user/requests/received", {
-      withCredentials: true,
-    });
+  const reviewRequest = async (status, _id) => {
+    try {
+      await axios.post(
+        BASE_URL + "/request/review/" + status + "/" + _id,
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeRequest(_id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    dispatch(addRequest(res.data.data));
+  const fetchRequests = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "/user/requests/received", {
+        withCredentials: true,
+      });
+
+      dispatch(addRequest(res.data.data));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -54,8 +71,12 @@ const Requests = () => {
               {skills.length > 0 && <p>{skills}</p>}
             </div>
             <div className="flex flex-col card-actions justify-evenly">
-            <button className="btn btn-secondary">Accept</button>
-              <button className="btn btn-primary">Reject </button>
+            <button className="btn btn-secondary" onClick={() => reviewRequest("accepted", req._id)}>
+              Accept
+            </button>
+            <button className="btn btn-primary" onClick={() => reviewRequest("rejected", req._id)}>
+              Reject 
+            </button>
               
             </div>
           </div>
