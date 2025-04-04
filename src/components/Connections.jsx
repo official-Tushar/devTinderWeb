@@ -36,11 +36,11 @@ const Connections = () => {
     <div className="mt-10 mb-20">
       <h1 className="text-2xl text-center my-3">Connections</h1>
 
-      {connections.map((connection, index) => {
-        const { firstName, lastName, photoUrl, age, gender, skills } =
+      {connections.map((connection) => {
+        const { _id, firstName, lastName, photoUrl, age, gender, skills } =
           connection;
         return (
-          <div key={index} className="card card-side bg-base-300 shadow-sm w-1/2 p-5 mx-auto my-3 flex">
+          <div key={_id} className="card card-side bg-base-300 shadow-sm w-1/2 p-5 mx-auto my-3 flex">
             <div>
               <figure>
                 <img
