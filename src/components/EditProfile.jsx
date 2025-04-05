@@ -10,10 +10,10 @@ const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-  const [gender, setGender] = useState(user.gender);
-  const [age, setAge] = useState(user.age);
-  const [about, setAbout] = useState(user.about);
-  const [skills, setSkills] = useState(user.skills);
+  const [gender, setGender] = useState(user.gender || "");
+  const [age, setAge] = useState(user.age || "");
+  const [about, setAbout] = useState(user.about || "");
+  const [skills, setSkills] = useState(user.skills || "");
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const dispatch = useDispatch();
@@ -46,7 +46,7 @@ const EditProfile = ({ user }) => {
 
   return (
     <div>
-      <div className="flex my-10 gap-5">
+      <div className="flex mt-20 mb-0 gap-5">
         <div className="flex justify-center">
           <div className="card card-border bg-base-300 w-96">
             <div className="card-body">

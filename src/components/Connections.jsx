@@ -28,12 +28,12 @@ const Connections = () => {
 
   if (connections.length === 0) {
     return (
-      <h1 className="text-2xl text-center my-10">No Connections found.</h1>
+      <h1 className="text-2xl text-center mt-26 mb-86">No Connections found.</h1>
     );
   }
 
   return (
-    <div className="mt-10 mb-20">
+    <div className="mt-26 mb-8">
       <h1 className="text-2xl text-center my-3">Connections</h1>
 
       {connections.map((connection) => {

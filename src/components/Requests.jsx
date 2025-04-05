@@ -41,12 +41,12 @@ const Requests = () => {
 
   if (requests.length === 0) {
     return (
-      <h1 className="text-2xl text-center my-10">No new Requests.</h1>
+      <h1 className="text-2xl text-center mt-26 mb-86">No new Requests.</h1>
     );
   }
 
   return (
-    <div className="mt-10 mb-20">
+    <div className="mt-260 mb-8">
       <h1 className="text-2xl text-center my-3">Requests</h1>
 
       {requests.map((req) => {
